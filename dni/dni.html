@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de DNI</title>
+    <link rel="stylesheet" href="css/dni.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Validador de DNI</h1>
+        <h4>Salinas Ramos Luis Miguel</h4>
+        <div class="form-group">
+            <label for="numeroDNI">Número de DNI:</label>
+            <input type="number" id="numeroDNI" placeholder="Ej: 12345678">
+        </div>
+        <div class="form-group">
+            <label for="letraDNI">Letra del DNI:</label>
+            <input type="text" id="letraDNI" maxlength="1" placeholder="Ej: A">
+        </div>
+        <button onclick="validarDNI()">Validar</button>
+        <p id="resultado"></p>
+    </div>
+    <script src="dni.js"></script>
+</body>
+</html>

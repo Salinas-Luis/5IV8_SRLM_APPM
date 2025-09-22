@@ -1,0 +1,44 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eee;
+    margin: 20px;
+}
+
+
+h1 {
+    color: #444;
+}
+
+
+div {
+    margin-bottom: 15px;
+}
+
+
+label, input, button {
+    display: block; 
+    margin-bottom: 5px;
+}
+
+
+input {
+    width: 200px; 
+    padding: 5px;
+    border: 1px solid black;
+}
+
+
+button {
+    background-color: blue;
+    color: white;
+    padding: 8px;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+#resultado {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #333;
+}
