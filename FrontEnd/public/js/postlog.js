@@ -1,4 +1,4 @@
-// 1. Agregamos la función interpretadora fuera para que sea limpia
+
 function interpretarDatosBatiz(nombreGrupo, semestre) {
     if (!nombreGrupo) return { carrera: "No asignada", turno: "N/A" };
     
@@ -9,7 +9,6 @@ function interpretarDatosBatiz(nombreGrupo, semestre) {
     if (semestre <= 2) {
         carrera = "Tronco Común";
     } else {
-        // Tu lógica: 1-3 Sistemas, 4-6 Mecatrónica, 7-9 Programación
         if (ultimoDigito >= 1 && ultimoDigito <= 3) carrera = "Sistemas Digitales";
         else if (ultimoDigito >= 4 && ultimoDigito <= 6) carrera = "Mecatrónica";
         else if (ultimoDigito >= 7 && ultimoDigito <= 9) carrera = "Programación";

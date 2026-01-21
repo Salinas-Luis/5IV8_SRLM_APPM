@@ -171,7 +171,7 @@ body {
     margin-top: 10px;
 }
 
-.btn_reg:hover {
+#btnRegistrar:hover {
     background-color: #0091d9;
 }
 
@@ -207,4 +207,9 @@ footer {
         max-width: 400px;
         border-radius: 20px;
     }
+}
+
+.buttons a:hover, .buttons a.active {
+    color: black;
+    border-bottom: 2px solid #14185c;
 }

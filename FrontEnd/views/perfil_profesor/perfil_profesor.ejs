@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxGrade | Dashboard</title>
+    <link rel="stylesheet" href="/public/css/styleprofesor.css">
+    <script src="https://kit.fontawesome.com/101326ea39.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container-header">
+        <div class="divacio"></div>
+        <div class="divimg"><img src="/public/img/maxgradeplacapng.png" alt="MaxGrade"></div>
+        <div class="irperfil">
+            <a href="../perfilconfig/perfilconfig.html">
+                <img src="/public/img/usuario-negro-forma-de-cerca.png" alt="Perfil">
+            </a>
+        </div>
+    </div>
+
+    <div class="container-nav">
+        <a href="/public/views/perfil_alumno">Inicio | </a>
+        <a href="#" onclick="cerrarSesion()">Cerrar Sesión |</a>
+        <a href="/calificaciones">Calificaciones</a>
+    </div>
+
+    <div class="container-body">
+        <h2 id="bienvenida-usuario" style="margin-top: 20px;">Hola, Cargando...</h2>
+        <div id="lista-tareas-existentes">
+            </div>
+            <div class="seccion-tareas">
+                <p style="font-size: 25px; margin-top: 20px; color: black;">Crear nueva tarea</p>
+                <div class="formulario-tarea">
+                    <input type="text" id="tarea-titulo" placeholder="Título de la tarea (ej: Práctica 1)">
+                    <textarea id="tarea-desc" placeholder="Instrucciones detalladas para los alumnos..."></textarea>
+
+                    <div class="inputs-inline">
+                        <select id="tarea-grupo">
+                            <option value="" disabled selected>Seleccionar Grupo (ej: 5IV8)</option>
+                            </select>
+                            <select id="tarea-materia" disabled>
+                                <option value="" disabled selected>Selecciona primero un grupo</option>
+                            </select>
+                        <input type="date" id="tarea-fecha">
+                    </div>
+                    
+                    <button id="btnPublicarTarea" class="btn-guardar" >Publicar Tarea</button>
+                </div>
+            </div>
+
+    </div>
+
+
+
+    <div class="container-footer">
+        </div>
+
+    <script src="/public/js/profesores.js"></script>
+</body>
+</html>
