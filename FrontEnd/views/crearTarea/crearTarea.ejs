@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxGrade</title>
+    <link rel="stylesheet" href="./csscrearTarea/stylecTarea.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+        <div class="container-header">
+            <div class="divacio"></div>
+            <div class="divimg"><img src="../img/maxgradeplacapng.png" alt=""></div>
+            <div class="irperfil"><a href="../perfilconfig/perfilconfig.html"><img src="./img/usuario-negro-forma-de-cerca.png"></a></div>
+        </div>
+            <div class="container-nav">
+                <a href="../Calendario/calendario.html"  style="display: none;">Calendario | </a>
+                <a href="../crearTarea/crearTarea.html">Crear Tarea  | </a>
+                <a href="../PostLogin/postlog.html">Tareas</a>
+            </div>
+                <div class="container-body">
+                    <h2>Creacion de Tarea</h2>
+                    <div class="divtipot"><button class="tipot" id="btn-individual">Individual</button> <button class="tipot" id="btn-equipo">En equipo</button></div>
+                    <div class="form-crearTarea">
+                    <div id="contenedor-integrantes">
+
+                    </div>
+                    <p class="label">Nombre de la tarea:</p>
+                    <input type="text" placeholder="Ej: Integrales" id="tareanombrereg" class="inputlog" ><hr>
+                    <hr>
+                    <label for="catalogomaterias">Materia:</label> <br>
+                    <select id="catalogomaterias">
+                        <option value="Calculo Integral">Cálculo Integral</option>
+                        <option value="Fisica III">Fisica III</option>
+                        <option value="Programacion Web">Programación Web</option>
+                        <option value="Pruebas de Software">Pruebas de Software</option>
+                        <option value="Química">Química</option>
+                    </select>
+                    <hr>
+                    <p class="label1">Fecha de entrega</p>
+                    <input type="date" id="fechaentrega" class="inputlog"><hr>
+                    <p class="label1">Nivel de Prioridad</p>
+                    <input type="radio" name="nivelprio" id="nivelprio1">
+                    <label for="nivelprio1">Alta</label>
+                    <input type="radio" name="nivelprio" id="nivelprio2">
+                    <label for="nivelprio2">Media</label>
+                    <input type="radio" name="nivelprio" id="nivelprio3">
+                    <label for="nivelprio3">Baja</label><hr>
+                    <p class="label1">Instrucciones</p>
+                    <input type="text" id="Instrucciones" class="inputlog" placeholder="Descripcion de la tarea"><hr>
+                    </div>
+                    <div class="container-btn">
+                    <a href="../PostLogin/postlog.html" onclick="return guardarTarea()"><button>Guardar</button></a>
+                    <a href="../PostLogin/postlog.html"><button>Regresar</button></a>  
+                    <button onclick="resetearFormulario()">Resetear</button>
+                    </div>
+                </div>
+                <script src="./js/ctarea.js"></script>
+</body>
+</html>

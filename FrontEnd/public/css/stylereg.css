@@ -1,0 +1,220 @@
+/* 1. RESET Y CONFIGURACIÓN BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Fundamental para que los paddings no ensanchen las cajas */
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    /* Imagen de fondo ocupando toda la pantalla */
+    background-image: url("/public/img/Imagen1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    /* Layout vertical para empujar el footer al fondo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* 2. HEADER (AZUL MARINO) */
+.container-header {
+    background-color: #14185c;
+    padding: 10px 20px;
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: center; /* Centra el contenido del nav */
+}
+
+.container-nav {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container-logo img {
+    width: 180px;
+}
+
+.enlace {
+    display: flex;
+    gap: 20px;
+}
+
+.enlace a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    transition: 0.3s;
+}
+
+.enlace a:hover {
+    border-bottom: 2px solid white;
+}
+
+.enlace3 {
+    background-color: black;
+    border-radius: 20px;
+}
+
+/* 3. CONTENEDOR CENTRAL DE REGISTRO */
+.user-reg {
+    flex-grow: 1; /* Ocupa todo el espacio entre header y footer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Caja de la Izquierda (Beige con Logo) */
+.container-logo-reg {
+    background-color: #f2eae6;
+    width: 380px;
+    height: 620px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px 0 0 20px;
+    box-shadow: -10px 10px 30px rgba(0,0,0,0.3);
+}
+
+.container-logo-reg img {
+    width: 85%;
+    height: auto;
+}
+
+/* Caja de la Derecha (Formulario Blanco) */
+.container-userid {
+    background-color: white;
+    width: 420px;
+    height: 620px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 0 20px 20px 0;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
+}
+
+.container-userid h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* 4. ELEMENTOS DEL FORMULARIO */
+.inputreg {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.inputreg:focus {
+    border-color: #14185c;
+    background-color: #f9f9f9;
+}
+
+/* Contenedor especial para el Password (con el icono de ojo) */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    margin-bottom: 15px;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Botones de selección superior (Login/Registro) */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.buttons a {
+    text-decoration: none;
+    color: #888;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.buttons a.active {
+    color: black;
+    border-bottom: 2px solid #14185c;
+}
+
+/* Botón Final de Registrarse */
+.btn_reg {
+    background-color: #14185c;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn_reg:hover {
+    background-color: #0091d9;
+}
+
+footer {
+    background-color: #14185c;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid #000;
+}
+
+.container-redes {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.container-redes img {
+    width: 25px;
+    border-radius: 50%;
+}
+
+@media (max-width: 800px) {
+    .user-reg {
+        flex-direction: column;
+    }
+    .container-logo-reg {
+        display: none; 
+    }
+    .container-userid {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 20px;
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxGrade | Dashboard</title>
+    <link rel="stylesheet" href="./stylepostlog/stylepostlog.css">
+    <script src="https://kit.fontawesome.com/101326ea39.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div class="container-header">
+        <div class="divacio"></div>
+        <div class="divimg"><img src="../img/maxgradeplacapng.png" alt="MaxGrade"></div>
+        <div class="irperfil">
+            <a href="../perfilconfig/perfilconfig.html">
+                <img src="./img/usuario-negro-forma-de-cerca.png" alt="Perfil">
+            </a>
+        </div>
+    </div>
+
+    <div class="container-nav">
+        <a href="../crearTarea/crearTarea.html">Crear Tarea | </a>
+        <a href="../PostLogin/postlog.html">Tareas</a>
+    </div>
+
+    <div class="container-body">
+        <h2 id="bienvenida-usuario" style="margin-top: 20px;">Hola, Cargando...</h2>
+        <p id="info-academica" style="color: #666; font-size: 14px;">Carrera: -- | Semestre: --</p>
+
+        <hr>
+
+        <p style="font-size: 25px; margin-top: 20px;">Mis Calificaciones</p>
+        <div id="contenedor-materias" class="materias-grid">
+            </div>
+
+        <hr>
+
+        <p style="font-size: 25px; margin-top: 20px;">Lista de Tareas</p>
+        <div id="lista-tareas-existentes">
+            </div>
+    </div>
+
+    <div class="container-footer">
+        </div>
+
+    <script src="./js/postlog.js"></script>
+</body>
+</html>

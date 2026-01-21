@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="./css/stylereccon.css">
+    <script src="https://kit.fontawesome.com/101326ea39.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+            <div class="container-header">
+                <div class="container-nav">
+                    <div class="container-logo">
+                        <a href="../index.html">
+                        <img src="../img/maxgradeplacapng.png" alt="XD no esta la imagen">   
+                        </a>
+                    </div>
+                    <div  class="vacio">
+
+                    </div>
+                    <div class="enlace">
+                        <a href="../Login/login.html" style="display: none;">Inicio de Sesión</a>
+                        <a href="./contacto/contacto.html" class="enlace3" style="display: none;">Contacto</a>
+                    </div>
+
+                </div>
+            </div>
+                <div class="user-reccon">
+                    <div class="container-logo-reccon">
+                        <img src="../img/LogoPng.png" alt="">
+                    </div>
+                    <div class="container-userid">
+                        <div class="buttons">
+                        <a href="../Login/login.html">
+                            Iniciar sesión
+                        </a>
+                        <a href="../Registro/registro.html">
+                            Registro
+                        </a>
+                        </div>
+                        <div class="inputreccon" id="divreccon">Ingrese su nueva Contraseña:</div>
+                        <div class="inputlog">
+                        <i class="fa-solid fa-lock"></i><input type="password" placeholder="De 8 a 12 caracteres" id="userreg" class="inputlog" onkeypress="return validarc(event)" ><i class="fa-solid fa-eye" id="togglePassword"></i>
+                        </div>
+                        <a href="../index.html" class="btn_reccon" onclick="return validars()">Recuperar Contraseña</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-footer">
+                    <footer>
+                        <div class="container-enlace">
+                            <a href="">¿Qué es MaxGrade?</a>
+                        </div>
+                        <div class="container-vacio">
+                            
+                        </div>
+                        <div class="container-redes">
+                            <a href=""><img src="../img/instapng.png" alt=""></a>
+                            <a href=""><img src="../img/facebookpng.png" alt=""></a>
+                        </div>
+                    </footer>
+                </div>  
+                <script src="./js/reccon.js"></script>
+</body>
+</html>

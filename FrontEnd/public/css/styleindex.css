@@ -1,0 +1,137 @@
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    overflow-x: hidden; 
+}
+
+.container-main {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    padding-top: 20px; 
+    background-image: url(../img/fondo-azul-elegante-abstracto-con-espacio-de-texto.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    flex-grow: 1; 
+}
+
+.container-header {
+    padding: 20px;
+    background-color: #1c106d;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 80px;
+    position: static;
+}
+
+footer {
+    background-color: rgb(68, 72, 75); 
+    box-sizing: border-box;
+    color: white;
+    font-size: 12px;
+    font-weight: bold; 
+    line-height: normal; 
+    padding: 0;
+    position: static;
+    margin-top: 0; 
+}
+footer div:last-child, footer p, footer ul {
+    margin-bottom: 0 !important;
+}
+
+.container-columna {
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 0%; 
+}
+
+.container-slogan {
+    padding-top: 150px;
+    padding-bottom: 20px;
+}
+
+.container-nombre {
+    font-size: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container-texto {
+    font-size: 30px;
+    font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+.logo {
+    width: 250px;
+    min-width: 120px;
+    margin-left: 35px;
+}
+
+.img {
+    width: 250px;
+    height: 70px;
+}
+
+img {
+    overflow: clip;
+    vertical-align: middle;
+}
+
+.nav-link {
+    color: #fff;
+}
+
+.piramide {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.fila {
+    display: flex;
+    gap: 20px;
+}
+
+.fila-arriba {
+    justify-content: center;
+}
+
+.fila-abajo {
+    justify-content: center;
+}
+
+.elemento {
+    background-color: #b4e3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 2px 2px 0 #86a9bd;
+    flex-direction: column;
+    padding: 15px; 
+    text-align: center;
+    width: auto; 
+    min-height: 100px;
+}
+
+.texto-info {
+    font-size: 15px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word;
+}

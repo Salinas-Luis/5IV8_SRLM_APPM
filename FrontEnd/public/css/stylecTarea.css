@@ -1,0 +1,138 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container-header{
+    background-color: #14185c;
+    text-align: center;
+    color: #f2eae6;
+    width: 100%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divimg img{
+    height: 80px;
+}
+.irperfil img{
+    width: 90px;
+    height: 80px;
+}
+.divacio{
+    width: 6%;
+}
+.divimg{
+    width: 100%;
+    text-align: center;
+}
+
+.container-nav{
+    background-color: #21257a;
+    text-align: center;
+    height: auto;
+    padding: 5px;
+}
+.container-nav a{
+    text-decoration: none;
+    color: #f2eae6;
+    font-size: 25px; 
+}
+
+.container-body{
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px; 
+    width: 100%; 
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #f4f0f0;
+}
+.container-btn{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.container-btn a{
+    margin: 5px;
+    width: 100px;
+}
+button{
+    background-color: #00577f;
+    color: #f2eae6;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding-inline-start: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin: 10px;
+}
+
+button:hover{
+    background-color: #0091d9;
+    border: 1px solid #000;
+}
+
+button:active{
+    background-color: #00577f;
+    border: 1px solid #000;
+}
+
+.irperfil img{
+    width: 100%;
+    height: 60px;
+}
+.irperfil{
+    margin-right: 40px;
+    background-color: #f2eae6;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50px;
+}
+
+.form-crearTarea{
+    background-color: #ffffff;
+    color: #14185c;
+    text-align: left;
+    border-radius: 15px;
+    height: auto;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 60%;
+    max-width: 500px; 
+    font-size: 18px;
+    padding: 20px;
+    border: 2px solid #666262 ;
+    border-style: dashed;
+}
+
+.inputlog{
+    width: 90%;
+}
+
+.tipot{
+    width: 100%;
+    padding: 10px;
+
+}
+
+.divtipot{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+    min-width: 200px;
+    max-width: 400px;
+}
