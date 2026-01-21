@@ -4,7 +4,7 @@ import { User } from "../models/userModel.js";
 export const registrarUsuario = async (req, res) => {
   const { nombre_completo, email, username, password, carrera_id, grupo_id, semestre,  rol } = req.body;
 
-  if (!nombre_completo || !email || !username || !password || !carrera_id || !grupo_id| !semestre) {
+  if (!nombre_completo || !email || !username || !password || !carrera_id || !grupo_id || !semestre) {
     return res.status(400).json({ error: "Todos los campos son obligatorios." });
   }
 
@@ -13,8 +13,8 @@ export const registrarUsuario = async (req, res) => {
     return res.status(400).json({ error: "El formato del correo no es válido." });
   }
 
-  if (password.length < 6) {
-    return res.status(400).json({ error: "La contraseña debe tener al menos 6 caracteres." });
+  if (password.length < 8) {
+    return res.status(400).json({ error: "La contraseña debe tener al menos 8 caracteres." });
   }
 
   try {
@@ -47,29 +47,29 @@ export const registrarUsuario = async (req, res) => {
 };
 
 export const loginUsuario = async (req, res) => {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
 
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email y contraseña son obligatorios" });
-  }
+    if (!email || !password) {
+        return res.status(400).json({ error: "Email y contraseña son obligatorios" });
+    }
 
-  try {
-    const usuario = await Auth.login(email, password);
-
-    res.status(200).json({
-      message: "Bienvenido",
-user: {
-        id: usuario.nombre_id,
-        nombre: usuario.nombre_completo,
-        rol: usuario.rol,
-        carrera_id: usuario.carrera_id, 
-        semestre: usuario.semestre,    
-        grupo_id: usuario.grupo_id    
-      }
-    });
-  } catch (error) {
-    res.status(401).json({ error: error.message });
-  }
+    try {
+        const usuario = await Auth.login(email, password);
+        return res.status(200).json({
+            message: "Bienvenido",
+            user: {
+                id: usuario.nombre_id,
+                nombre: usuario.nombre_completo,
+                rol: usuario.rol,
+                carrera_id: usuario.carrera_id, 
+                semestre: usuario.semestre,    
+                grupo_id: usuario.grupo_id    
+            }
+        });
+    } catch (error) {
+        console.error("DETALLE TÉCNICO:", error);
+        return res.status(401).json({ error: error.message });
+    }
 };
 
 export const actualizarNotificaciones = async (req, res) => {

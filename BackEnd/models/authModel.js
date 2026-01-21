@@ -15,10 +15,10 @@ export const Auth = {
     return data.id;
   },
 
-  async createPassword(hash_password) {
+  async createPassword(password) {
     const { data, error } = await supabase
       .from('contrasena')
-      .insert([{ hash_password }])
+      .insert([{ contrasena:password }])
       .select('id')
       .single();
 
@@ -39,7 +39,7 @@ export const Auth = {
     }
     return data.nombreu_id;
   },
-  async login(email, password) {
+async login(email, password) {
     const { data: correoData, error: correoError } = await supabase
       .from('correo')
       .select('id')
@@ -53,14 +53,20 @@ export const Auth = {
         nombre_id,
         nombre_completo,
         rol,
-        contrasena:contrasena_id (hash_password)
+        semestre,
+        grupo_id,
+        carrera_id,
+        contrasena:contrasena_id (contrasena) 
       `)
       .eq('correo_id', correoData.id)
       .single();
 
-    if (userError || !usuario) throw new Error("Error al obtener datos del usuario");
+    if (userError || !usuario) {
+        console.error("Error de Supabase:", userError);
+        throw new Error("Error al obtener datos del usuario");
+    }
 
-    if (usuario.contrasena.hash_password !== password) {
+    if (usuario.contrasena.contrasena !== password) {
       throw new Error("Contraseña incorrecta");
     }
 

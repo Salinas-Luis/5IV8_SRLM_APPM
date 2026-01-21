@@ -1,16 +1,19 @@
-import { supabase } from "../config/supabaseClient.js";
+import { supabase } from "../config/supabase.js";
 
 export const Materia = {
   async getMateriasPorAlumno(carrera_id, semestre) {
     try {
       const { data, error } = await supabase
         .from('materias') 
-        .select('id, nombre_mate, carrera_id, semestre')
-        .or(`carrera_id.eq.${carrera_id},carrera_id.eq.1`)
+        .select('id, nombre_materia, carrera_id, semestre')
         .eq('semestre', semestre)
-        .order('nombre_mate', { ascending: true }); 
+        .or(`carrera_id.eq.${carrera_id},carrera_id.eq.1`)
+        .order('nombre_materia', { ascending: true }); 
 
-      if (error) throw error;
+      if (error) {
+        console.error("Error en Supabase:", error.message);
+        throw error;
+      }
       return data;
     } catch (error) {
       console.error("Error en MateriaModel:", error.message);

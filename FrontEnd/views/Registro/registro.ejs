@@ -87,9 +87,9 @@
                         <option value="2">5IV9</option>
                         </select>
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                    <select id="semestrereg" class="inputreg" required>
+                    <select id="semestrereg" class="form-control inputlog" required>
                         <option value="" disabled selected>Selecciona tu semestre</option>
                         <option value="1">1° Semestre</option>
                         <option value="2">2° Semestre</option>
@@ -100,8 +100,17 @@
                     </select>
                 </div>
 
-                <button type="button" class="btn_reg w-100" id="btnRegistrar">Registrarse</button>
-            </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa-solid fa-microchip"></i></span>
+                    <select id="carrerareg" class="form-control inputlog" disabled>
+                        <option value="1">Tronco Común</option> 
+                        <option value="2">Programación</option>
+                        <option value="3">Sistemas Digitales</option>
+                        <option value="4">Mecatrónica</option>
+                    </select>
+                </div>
+
+            <button type="button" id="btnRegistrar" onclick="enviarRegistro()" btn btn-primary btn_iniciar w-100>Registrarse</button> 
         </div>
     </main>
         <footer class="container-footer mt-auto bg-dark text-white py-3">

@@ -101,3 +101,91 @@ body{
 .tarjeta-tarea button:hover{
     background-color: #0091d9;
 }
+/* Contenedor principal de materias */
+#contenedor-materias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Estilo de la tarjeta de materia */
+.materia-card-alumno {
+    background: #ffffff;
+    border-radius: 12px;
+    border-left: 6px solid #1a237e; /* Azul oscuro del estilo principal */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 20px;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.materia-card-alumno:hover {
+    transform: translateY(-5px);
+}
+
+/* Título de la materia */
+.materia-titulo {
+    color: #1a237e;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.materia-tipo {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.notas-display {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.nota-item {
+    text-align: center;
+    flex: 1;
+}
+
+.nota-valor {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.nota-label {
+    font-size: 0.7rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+#contenedor-materias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px; 
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.materia-card-alumno {
+    background: #c9c9c9;
+    border-radius: 15px;
+    border-left: 8px solid #1a237e; 
+    box-shadow: 2px 4px 15px rgba(0,0,0,0.1);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+}

@@ -1,8 +1,8 @@
-/* 1. RESET Y CONFIGURACIÓN BASE */
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Fundamental para que los paddings no ensanchen las cajas */
+    box-sizing: border-box; 
 }
 
 html, body {
@@ -11,26 +11,23 @@ html, body {
 }
 
 body {
-    /* Imagen de fondo ocupando toda la pantalla */
     background-image: url("/public/img/Imagen1.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     
-    /* Layout vertical para empujar el footer al fondo */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
 
-/* 2. HEADER (AZUL MARINO) */
 .container-header {
     background-color: #14185c;
     padding: 10px 20px;
     border-bottom: 2px solid #000;
     display: flex;
-    justify-content: center; /* Centra el contenido del nav */
+    justify-content: center;
 }
 
 .container-nav {
@@ -67,20 +64,18 @@ body {
     border-radius: 20px;
 }
 
-/* 3. CONTENEDOR CENTRAL DE REGISTRO */
 .user-reg {
-    flex-grow: 1; /* Ocupa todo el espacio entre header y footer */
+    flex-grow: 1; 
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
+    padding: 70px 40px;
 }
 
-/* Caja de la Izquierda (Beige con Logo) */
 .container-logo-reg {
     background-color: #f2eae6;
     width: 380px;
-    height: 620px;
+    height: 650px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,11 +88,10 @@ body {
     height: auto;
 }
 
-/* Caja de la Derecha (Formulario Blanco) */
 .container-userid {
     background-color: white;
     width: 420px;
-    height: 620px;
+    height: 650px;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -112,7 +106,6 @@ body {
     color: #333;
 }
 
-/* 4. ELEMENTOS DEL FORMULARIO */
 .inputreg {
     width: 100%;
     padding: 12px 15px;
@@ -129,7 +122,6 @@ body {
     background-color: #f9f9f9;
 }
 
-/* Contenedor especial para el Password (con el icono de ojo) */
 .password-wrapper {
     position: relative;
     width: 100%;
@@ -147,7 +139,6 @@ body {
     color: #666;
 }
 
-/* Botones de selección superior (Login/Registro) */
 .buttons {
     display: flex;
     justify-content: center;
@@ -167,7 +158,6 @@ body {
     border-bottom: 2px solid #14185c;
 }
 
-/* Botón Final de Registrarse */
 .btn_reg {
     background-color: #14185c;
     color: white;

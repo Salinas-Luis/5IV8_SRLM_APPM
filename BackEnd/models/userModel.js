@@ -1,3 +1,4 @@
+import { supabase } from "../config/supabase.js";
 export const User = {
   async createFullRegistration(nombre_completo, ids, rol = 'alumno') {
     const { data, error } = await supabase
@@ -40,7 +41,7 @@ export const User = {
     const camposAActualizar = {};
     if (updates.nombre_completo) camposAActualizar.nombre_completo = updates.nombre_completo;
     if (updates.frecuencia_notificaciones) camposAActualizar.frecuencia_notificaciones = updates.frecuencia_notificaciones;
-    if (updates.semestre) camposAActualizar.semestre = updates.semestre; // Permitir actualizar semestre
+    if (updates.semestre) camposAActualizar.semestre = updates.semestre; 
 
     const { data, error } = await supabase
       .from('registro')

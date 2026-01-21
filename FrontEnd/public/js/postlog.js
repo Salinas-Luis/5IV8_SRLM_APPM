@@ -1,17 +1,38 @@
+// 1. Agregamos la función interpretadora fuera para que sea limpia
+function interpretarDatosBatiz(nombreGrupo, semestre) {
+    if (!nombreGrupo) return { carrera: "No asignada", turno: "N/A" };
+    
+    const turno = nombreGrupo.includes('IM') ? 'Matutino' : 'Vespertino';
+    const ultimoDigito = parseInt(nombreGrupo.slice(-1));
+    
+    let carrera = "";
+    if (semestre <= 2) {
+        carrera = "Tronco Común";
+    } else {
+        // Tu lógica: 1-3 Sistemas, 4-6 Mecatrónica, 7-9 Programación
+        if (ultimoDigito >= 1 && ultimoDigito <= 3) carrera = "Sistemas Digitales";
+        else if (ultimoDigito >= 4 && ultimoDigito <= 6) carrera = "Mecatrónica";
+        else if (ultimoDigito >= 7 && ultimoDigito <= 9) carrera = "Programación";
+        else carrera = "Especialidad";
+    }
+    return { carrera, turno };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
     if (!usuario) {
-        window.location.href = "../login.html";
+        window.location.href = "/";
         return;
     }
 
+    const datos = interpretarDatosBatiz(usuario.nombre, usuario.semestre);
+
     document.getElementById("bienvenida-usuario").textContent = `Hola, ${usuario.nombre}`;
-    document.getElementById("info-academica").textContent = 
-        `Carrera: ${usuario.carrera_id} | Semestre: ${usuario.semestre}° | Grupo: ${usuario.grupo_id}`;
+    
+    document.getElementById("info-academica").textContent = `Semestre: ${usuario.semestre}° `;
 
     await cargarMaterias(usuario.carrera_id, usuario.semestre, usuario.id);
-
 });
 
 async function cargarMaterias(carrera_id, semestre, usuario_id) {
@@ -27,17 +48,27 @@ async function cargarMaterias(carrera_id, semestre, usuario_id) {
 
         materias.forEach(materia => {
             const div = document.createElement("div");
-            div.className = "materia-card"; 
+            div.className = "materia-card-alumno"; 
+            
+            const tipoLabel = materia.carrera_id === 1 ? "Tronco Común" : "Especialidad";
+
             div.innerHTML = `
-                <div class="materia-info">
-                    <strong>${materia.nombre_mate}</strong>
-                    <div class="inputs-parciales">
-                        <input type="number" placeholder="P1" id="p1-${materia.id}" min="0" max="10" step="0.1">
-                        <input type="number" placeholder="P2" id="p2-${materia.id}" min="0" max="10" step="0.1">
-                        <input type="number" placeholder="P3" id="p3-${materia.id}" min="0" max="10" step="0.1">
-                        <button onclick="enviarNota(${materia.id}, ${usuario_id})">
-                            <i class="fas fa-save"></i>
-                        </button>
+                <div>
+                    <span class="materia-titulo">${materia.nombre_materia}</span>
+                    <span class="materia-tipo">${tipoLabel}</span>
+                </div>
+                <div class="notas-display">
+                    <div class="nota-item">
+                        <span class="nota-label">Parcial 1</span>
+                        <span class="nota-valor">${materia.p1 || '0.0'}</span>
+                    </div>
+                    <div class="nota-item" style="border-left: 1px solid #ddd; border-right: 1px solid #ddd;">
+                        <span class="nota-label">Parcial 2</span>
+                        <span class="nota-valor">${materia.p2 || '0.0'}</span>
+                    </div>
+                    <div class="nota-item">
+                        <span class="nota-label">Parcial 3</span>
+                        <span class="nota-valor">${materia.p3 || '0.0'}</span>
                     </div>
                 </div>
             `;
@@ -45,29 +76,12 @@ async function cargarMaterias(carrera_id, semestre, usuario_id) {
         });
 
     } catch (err) {
-        contenedor.innerHTML = `<p style="color:red;">Error al cargar materias: ${err.message}</p>`;
+        contenedor.innerHTML = `<p class="text-danger">Error: ${err.message}</p>`;
     }
 }
 
-window.enviarNota = async (materiaId, usuarioId) => {
-    const nota = document.getElementById(`p1-${materiaId}`).value;
-    
-    if(!nota) return Swal.fire("Nota vacía", "Ingresa una calificación", "warning");
 
-    try {
-        const res = await fetch('/api/calificaciones/registrar', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                usuario_id: usuarioId,
-                materia_id: materiaId,
-                calificacion: parseFloat(nota),
-                parcial: 1
-            })
-        });
-
-        if(res.ok) Swal.fire("¡Guardado!", "Calificación registrada", "success");
-    } catch (err) {
-        Swal.fire("Error", "No se pudo conectar al servidor", "error");
-    }
+window.cerrarSesion = function() {
+    localStorage.removeItem("usuario");
+    window.location.href = "/"; 
 };
