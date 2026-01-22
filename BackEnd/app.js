@@ -62,6 +62,9 @@ app.get('/api/grupos', async (req, res) => {
 app.get('/perfil_profesor', (req, res) => {
     res.render('perfil_profesor/perfil_profesor');
 });
+app.get('/perfilconfig', (req, res) => {
+    res.render('perfilconfig/perfilconfig');
+});
 app.post('/api/tareas', async (req, res) => {
     const { titulo, descripcion, grupo_id, fecha_entrega, autor_id } = req.body;
 

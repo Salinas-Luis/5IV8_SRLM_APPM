@@ -187,10 +187,9 @@ body{
     min-height: 180px;
 }
 
-/* styleprofesor.css */
 
 .seccion-tareas {
-    background-color: #1e1e1e; /* Fondo oscuro coherente con tu diseño */
+    background-color: #1e1e1e; 
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -219,7 +218,7 @@ body{
     max-width: 700px;
     margin: 40px auto;
     border-top: 5px solid #0056b3; 
-
+}
 .seccion-tareas h2 {
     color: #0056b3;
     font-size: 24px;
