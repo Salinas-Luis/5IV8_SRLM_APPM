@@ -91,42 +91,26 @@ export const actualizarNotificaciones = async (req, res) => {
   }
 };
 
-export const editarPerfil = async (req, res) => {
-  const { userId, nombre_completo, frecuencia_notificaciones } = req.body;
-
-  if (!userId) {
-    return res.status(400).json({ error: "El ID del usuario es obligatorio para actualizar." });
-  }
-
-  if (nombre_completo !== undefined) {
-    if (typeof nombre_completo !== 'string' || nombre_completo.trim().length < 3) {
-      return res.status(400).json({ error: "El nombre debe ser un texto de al menos 3 caracteres." });
-    }
-    req.body.nombre_completo = nombre_completo.trim();
-  }
-
-  if (frecuencia_notificaciones !== undefined) {
-    const opcionesValidas = ['diario', 'semanal', 'solo_urgentes', 'ninguna'];
-    if (!opcionesValidas.includes(frecuencia_notificaciones)) {
-      return res.status(400).json({ 
-        error: `Frecuencia no válida. Opciones: ${opcionesValidas.join(', ')}` 
-      });
-    }
-  }
-
+export const updateProfile = async (req, res) => {
   try {
-    const perfilActualizado = await User.updateProfile(userId, {
-      nombre_completo: req.body.nombre_completo,
-      frecuencia_notificaciones: frecuencia_notificaciones
+    const { id, nombre, correo } = req.body;
+
+    if (!id || !nombre || !correo) {
+      return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
+    const updatedUser = await User.updateProfile(id, { 
+        nombre_completo: nombre, 
+        email: correo 
     });
 
     res.status(200).json({
-      message: "Perfil actualizado correctamente",
-      user: perfilActualizado
+      message: "Perfil actualizado con éxito",
+      user: updatedUser
     });
-
   } catch (error) {
-    res.status(500).json({ error: "Error al actualizar el perfil: " + error.message });
+    console.error("Error detallado:", error);
+    res.status(500).json({ error: "No se pudo actualizar el perfil" });
   }
 };
 export const obtenerCompaneros = async (req, res) => {

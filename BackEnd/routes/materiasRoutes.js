@@ -1,8 +1,8 @@
 import express from "express";
-import { obtenerMateriasUsuario } from "../controllers/materiaController.js";
+import { obtenerMateriasPorGrupo } from "../controllers/materiaController.js";
 
 const router = express.Router();
 
-router.get("/mis-materias", obtenerMateriasUsuario);
+router.get("/mis-materias", obtenerMateriasPorGrupo);
 
 export default router;

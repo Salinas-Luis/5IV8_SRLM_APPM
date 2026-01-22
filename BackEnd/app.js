@@ -100,7 +100,6 @@ app.use('/api/usuarios', userRoutes);
 app.use('/api/tareas', taskRoutes);
 app.use("/api/materias", materiaRoutes);
 app.use("/api/calificaciones", calificacionRoutes);
-
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor en: http://localhost:${PORT}`);

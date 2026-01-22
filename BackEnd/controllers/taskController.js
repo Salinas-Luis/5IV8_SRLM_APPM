@@ -25,15 +25,15 @@ export const crearTarea = async (req, res) => {
     return res.status(400).json({ error: "Los identificadores de materia, grupo y profesor deben ser numéricos." });
   }
 
-  try {
-    const nuevaTarea = await Task.create(
-      titulo.trim(), 
-      descripcion ? descripcion.trim() : "", 
-      materia_id, 
-      grupo_id, 
-      fecha_entrega, 
-      profesor_id
-    );
+try {
+  const nuevaTarea = await Task.create(
+    titulo.trim(), 
+    descripcion ? descripcion.trim() : "", 
+    parseInt(materia_id), 
+    parseInt(grupo_id),   
+    fecha_entrega, 
+    profesor_id          
+  );
 
     res.status(201).json({
       message: "Tarea publicada exitosamente para el grupo.",

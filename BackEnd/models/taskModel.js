@@ -1,39 +1,46 @@
 import { supabase } from "../config/supabase.js";
 
 export const Task = {
-  async create(titulo, descripcion, materia_id, grupo_id, fecha_entrega, profesor_id) {
+async create(titulo, descripcion, materia_id, grupo_id, fecha_entrega, profesor_id) {
     const { data, error } = await supabase
       .from('tareas')
       .insert([{
         titulo,
         descripcion,
-        materia_id,
-        grupo_id, 
-        fecha_entrega,
-        creada_por: profesor_id
+        materia_id,         
+        grupos_id: grupo_id,
+        autor_id: profesor_id,
+        fecha_entrega
       }])
-      .select();
+      .select()
+      .single();
 
-    if (error) throw error;
-    return data[0];
-  },
-
-  async getByGrupo(grupo_id) {
-    const { data, error } = await supabase
-      .from('tareas')
-      .select(`
-        id,
-        titulo,
-        descripcion,
-        fecha_entrega,
-        materia:materia_id (nombre_materia),
-        profesor:creada_por (nombre_completo)
-      `)
-      .eq('grupo_id', grupo_id); 
-
-    if (error) throw error;
+    if (error) {
+        console.error("Error detallado de Supabase:", error.message);
+        throw error;
+    }
     return data;
+},
+
+async getByGrupo(grupo_id) {
+  const { data, error } = await supabase
+    .from('tareas')
+    .select(`
+      id,
+      titulo,
+      descripcion,
+      fecha_entrega,
+      materia:materia_id (nombre_materia), 
+      profesor:autor_id (nombre_completo) 
+    `)
+    .eq('grupos_id', grupo_id);
+
+  if (error) {
+    console.error("Error en getByGrupo:", error.message);
+    throw error;
   }
+  return data;
+}
 };
 
 export const TaskTracking = {

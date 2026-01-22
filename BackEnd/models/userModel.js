@@ -38,21 +38,37 @@ export const User = {
   },
 
   async updateProfile(userId, updates) {
-    const camposAActualizar = {};
-    if (updates.nombre_completo) camposAActualizar.nombre_completo = updates.nombre_completo;
-    if (updates.frecuencia_notificaciones) camposAActualizar.frecuencia_notificaciones = updates.frecuencia_notificaciones;
-    if (updates.semestre) camposAActualizar.semestre = updates.semestre; 
+    const { data: usuario, error: errUser } = await supabase
+        .from('registro')
+        .select('correo_id')
+        .eq('nombre_id', userId)
+        .single();
 
+    if (errUser) throw errUser;
+
+    if (updates.email) {
+        const { error: errEmail } = await supabase
+            .from('correo') 
+            .update({ email: updates.email })
+            .eq('correo_id', usuario.correo_id);
+
+        if (errEmail) throw errEmail;
+    }
     const { data, error } = await supabase
-      .from('registro')
-      .update(camposAActualizar)
-      .eq('nombre_id', userId)
-      .select('nombre_id, nombre_completo, rol, frecuencia_notificaciones, semestre')
-      .single();
+        .from('registro')
+        .update({ nombre_completo: updates.nombre_completo })
+        .eq('nombre_id', userId)
+        .select(`
+            nombre_id, 
+            nombre_completo, 
+            rol,
+            correo:correo_id (email)
+        `)
+        .single();
 
     if (error) throw error;
     return data;
-  },
+} ,
 
   async getCompaneros(grupo_id) {
     const { data, error } = await supabase
