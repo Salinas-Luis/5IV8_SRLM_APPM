@@ -23,7 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const togglePassword = document.querySelector('#togglePassword');
     const passwordInput = document.querySelector('#passreg');
     const semestreSelect = document.getElementById("semestrereg");
+    const rolSelect = document.getElementById("rolreg");
     
+    if (rolSelect) {
+        rolSelect.addEventListener('change', gestionarCamposPorRol);
+    }
+
     if (semestreSelect) {
         semestreSelect.addEventListener('change', gestionarCarrera);
     }
@@ -41,6 +46,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if(btnReg) btnReg.addEventListener("click", enviarRegistro);
 });
 
+function gestionarCamposPorRol() {
+    const rol = document.getElementById("rolreg").value;
+    const elSemestre = document.getElementById("semestrereg");
+    const elGrupo = document.getElementById("gruporeg");
+    const elCarrera = document.getElementById("carrerareg");
+
+    if (rol === "profesor") {
+        elSemestre.disabled = true;
+        elGrupo.disabled = true;
+        elCarrera.disabled = true;
+        elSemestre.value = "1"; 
+        elGrupo.value = "101"; 
+        elCarrera.value = "1";
+    } else {
+        elSemestre.disabled = false;
+        elGrupo.disabled = false;
+        gestionarCarrera(); 
+    }
+}
+
 async function cargarGruposRegistro() {
     const grupoSelect = document.getElementById("gruporeg"); 
     if (!grupoSelect) return;
@@ -57,11 +82,9 @@ async function cargarGruposRegistro() {
                 option.textContent = grupo.nombre; 
                 grupoSelect.appendChild(option);
             });
-        } else {
-            console.error("Error al obtener grupos:", grupos.error);
         }
     } catch (err) {
-        console.error("Error de conexión al cargar grupos:", err);
+        console.error("Error de conexión:", err);
     }
 }
 
@@ -103,13 +126,6 @@ async function enviarRegistro() {
         return Swal.fire("Usuario inválido", "El usuario debe tener entre 8 y 16 caracteres", "warning");
     }
 
-    if (datos.semestre >= 3 && datos.carrera_id === 1) {
-        return Swal.fire("Atención", "A partir de 3er semestre selecciona una carrera técnica", "warning");
-    }
-
-    console.log("=== ENVIANDO DATOS VALIDADOS ===");
-    console.table(datos);
-
     try {
         const response = await fetch(`${API_URL}/usuarios/registrar`, {
             method: 'POST',
@@ -144,4 +160,3 @@ function gestionarCarrera() {
         selectorCarrera.disabled = true;
     }
 }
-
