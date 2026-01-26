@@ -2,9 +2,8 @@ const API_URL = "http://localhost:3000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-
     if (!usuario || usuario.rol !== 'profesor') {
-        window.location.href = "login.html";
+        window.location.href = "/";
         return;
     }
 
@@ -33,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btnPublicar) {
         btnPublicar.onclick = publicarTarea; 
     }
+    cargarMisTareas(usuario.id)
 });
 
 
@@ -63,8 +63,7 @@ async function cargarMateriasPorGrupo(grupoId, selectElement) {
         selectElement.disabled = true;
         selectElement.innerHTML = '<option value="" disabled selected>Cargando materias...</option>';
 
-        // URL CORREGIDA: Agregamos /materias antes de /mis-materias
-        const resp = await fetch(`${API_URL}/materias/mis-materias?id_grupo=${grupoId}`);
+        const resp = await fetch(`${API_URL}/materias/por-grupo?id_grupo=${grupoId}`);
         
         if (!resp.ok) throw new Error(`Error en el servidor: ${resp.status}`);
 
@@ -108,7 +107,7 @@ async function publicarTarea() {
         materia_id: parseInt(materia_id),
         grupo_id: parseInt(grupo_id),
         fecha_entrega,
-        profesor_id: usuario.id || usuario.nombre_id,
+        profesor_id: usuario.id,
         rol: usuario.rol
     };
 
@@ -138,3 +137,78 @@ window.cerrarSesion = function() {
     localStorage.removeItem("usuario");
     window.location.href = "/"; 
 };
+
+async function cargarMisTareas() {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const contenedor = document.getElementById("contenedor-tareas-profesor");
+
+    const resp = await fetch(`/api/materias/tareas-profesor?autor_id=${usuario.id}`);
+    const tareas = await resp.json();
+
+    contenedor.innerHTML = tareas.map(t => `
+        <div class="card mb-3 shadow-sm border-0" style="border-radius: 15px;">
+            <div class="card-body">
+                <h5 class="card-title">${t.titulo}</h5>
+                <p class="card-text text-muted">${t.descripcion}</p>
+                <div class="d-flex justify-content-between">
+                    <small>Entrega: ${t.fecha_entrega}</small>
+                    <div>
+                        <button class="btn btn-sm btn-outline-warning me-2" onclick="prepararEdicion(${t.id}, '${t.titulo}', '${t.descripcion}', '${t.fecha_entrega}')">
+                            <i class="fa-solid fa-pen"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="borrarTarea(${t.id})">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function borrarTarea(id) {
+    if (!confirm("¿Seguro que quieres borrar esta tarea?")) return;
+
+    const resp = await fetch(`/api/materias/tarea/${id}`, { method: 'DELETE' });
+    if (resp.ok) {
+        Swal.fire('¡Borrado!', 'La tarea ha sido eliminada.', 'success');
+        cargarMisTareas();
+    }
+}
+function prepararEdicion(id, titulo, descripcion, fecha) {
+    document.getElementById('edit-tarea-id').value = id;
+    document.getElementById('edit-titulo').value = titulo;
+    document.getElementById('edit-descripcion').value = descripcion;
+    document.getElementById('edit-fecha').value = fecha;
+
+    const modal = new bootstrap.Modal(document.getElementById('modalEditarTarea'));
+    modal.show();
+}
+
+async function guardarCambiosTarea() {
+    const id = document.getElementById('edit-tarea-id').value;
+    const datos = {
+        titulo: document.getElementById('edit-titulo').value,
+        descripcion: document.getElementById('edit-descripcion').value,
+        fecha_entrega: document.getElementById('edit-fecha').value
+    };
+
+    try {
+        const resp = await fetch(`/api/materias/tarea/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(datos)
+        });
+
+        if (resp.ok) {
+            Swal.fire('¡Actualizado!', 'La tarea se modificó correctamente.', 'success');
+            const modalElement = document.getElementById('modalEditarTarea');
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            modal.hide();
+            
+            cargarMisTareas(); 
+        }
+    } catch (error) {
+        console.error("Error al editar:", error);
+    }
+}

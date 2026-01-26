@@ -3,6 +3,11 @@ const API_URL = "http://localhost:3000/api";
 
 document.addEventListener("DOMContentLoaded", () => {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (!usuario || (usuario.rol !== 'profesor' && usuario.rol !== 'alumno')) {
+        window.location.href = "/";
+        return;
+    }
     if (usuario) {
         document.getElementById("edit-nombre").value = usuario.nombre || "";
         document.getElementById("edit-correo").value = usuario.correo || "";
@@ -33,10 +38,11 @@ async function guardarCambios() {
     }
 
     const datosActualizados = {
-        id: usuarioActual.nombre_id, 
+        id: usuarioActual.id, 
         nombre: nuevoNombre,
         correo: nuevoCorreo
     };
+    console.log(usuarioActual.id)
 
     try {
         Swal.showLoading(); 

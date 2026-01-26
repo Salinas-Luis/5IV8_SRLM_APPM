@@ -50,7 +50,7 @@ export const User = {
         const { error: errEmail } = await supabase
             .from('correo') 
             .update({ email: updates.email })
-            .eq('correo_id', usuario.correo_id);
+            .eq('id', usuario.correo_id);
 
         if (errEmail) throw errEmail;
     }

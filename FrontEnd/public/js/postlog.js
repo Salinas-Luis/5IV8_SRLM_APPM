@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
 
     if (!usuario || usuario.rol !== 'alumno') {
-        window.location.href = "login.html";
+        window.location.href = "/";
         return;
     }
 
@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         document.getElementById("lista-tareas").innerHTML = "<p>Aún no estás asignado a un grupo.</p>";
     }
+    cargarMaterias(usuario.id);
 });
 
 function interpretarDatosBatiz(nombreGrupo, semestre) {
@@ -138,6 +139,35 @@ window.prepararEntrega = function(tareaId) {
         }
     });
 };
+
+async function cargarMaterias(usuario_id) {
+    const contenedor = document.getElementById("contenedor-materias");
+    
+    try {
+        const resp = await fetch(`/api/materias/mis-materias?usuario_id=${usuario_id}`);
+        const materias = await resp.json();
+
+        if (!resp.ok) throw new Error(materias.error);
+
+        contenedor.innerHTML = ""; 
+        materias.forEach(m => {
+            const div = document.createElement("div");
+            div.className = "materia-card-alumno"; 
+            div.innerHTML = `
+                <div class="materia-info">
+                    <span class="materia-titulo">${m.nombre_materia}</span>
+                </div>
+                <div class="notas-display">
+                    <div class="nota-item"><span>P1:</span> ${m.p1}</div>
+                    <div class="nota-item"><span>P2:</span> ${m.p2}</div>
+                    <div class="nota-item"><span>P3:</span> ${m.p3}</div>
+                </div>`;
+            contenedor.appendChild(div);
+        });
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 window.cerrarSesion = function() {
     localStorage.removeItem("usuario");

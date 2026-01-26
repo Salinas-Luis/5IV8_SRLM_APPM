@@ -94,7 +94,7 @@ export const actualizarNotificaciones = async (req, res) => {
 export const updateProfile = async (req, res) => {
   try {
     const { id, nombre, correo } = req.body;
-
+    console.log(id,nombre,correo)
     if (!id || !nombre || !correo) {
       return res.status(400).json({ error: "Todos los campos son obligatorios" });
     }
